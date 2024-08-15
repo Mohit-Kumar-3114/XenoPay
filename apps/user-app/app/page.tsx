@@ -3,7 +3,7 @@ import { redirect } from 'next/navigation';
 import { authOptions } from "./lib/auth";
 import Link from 'next/link';
 import Image from "next/image";
-import { BalanceIcon } from "./(dashboard)/layout";
+
 
 export default async function Page() {
   const session = await getServerSession(authOptions);
