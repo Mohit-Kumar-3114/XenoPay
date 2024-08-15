@@ -5,8 +5,7 @@
     "dependencies": {
         "@prisma/client": "^5.17.0"
     },
-    "scripts": {
-        
+    "scripts": { 
         "build":"npx prisma generate"
     },
     
