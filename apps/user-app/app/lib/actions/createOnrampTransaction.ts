@@ -3,6 +3,7 @@
 import prisma from "@repo/db/client";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth";
+import { Prisma } from "@prisma/client";
 
 export async function createOnRampTransaction(provider: string, amount: number) {
     const session = await getServerSession(authOptions);
@@ -14,7 +15,7 @@ export async function createOnRampTransaction(provider: string, amount: number) 
     const token = (Math.random() * 1000).toString();
 
     if (provider === "Demo Bank") {
-        await prisma.$transaction(async (prisma) => {
+        await prisma.$transaction(async (prisma: Prisma.TransactionClient) => {
             await prisma.onRampTransaction.create({
                 data: {
                     provider,
