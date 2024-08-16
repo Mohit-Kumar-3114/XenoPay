@@ -18,8 +18,8 @@ const SignIn = () => {
       callbackUrl: "/account-details", 
     });
   }
-catch(e){
-  alert("Phone no. or password invalid!")
+catch(e:any){
+  alert(e)
 }
    
   };
