@@ -8,23 +8,19 @@ import { useState } from "react"
 const SignIn = () => {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
+ try{
     const result = await signIn("credentials", {
       phone,
       password,
       callbackUrl: "/account-details", 
     });
-
-
-    if (result?.error) {
-      setError("Invalid phone number or password.");
-    } else {
-      setError(null); 
-    }
+  }
+catch(e){
+  alert("Phone no. or password invalid!")
+}
    
   };
 
@@ -62,8 +58,6 @@ const SignIn = () => {
               required
             />
           </div>
-
-          {error && <p className="mt-2 text-red-600 text-sm">{error}</p>}
 
           <div className="flex justify-center  mt-8">
             <button
