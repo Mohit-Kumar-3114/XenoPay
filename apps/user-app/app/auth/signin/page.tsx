@@ -14,6 +14,7 @@ const SignIn = () => {
     e.preventDefault();
 
     const result = await signIn("credentials", {
+      redirect:false,
       phone,
       password,
       callbackUrl: "/account-details", 
@@ -24,6 +25,7 @@ const SignIn = () => {
       setError("Invalid phone number or password.");
     } else {
       setError(null); 
+      window.location.href = "/account-details"; 
     }
    
   };
