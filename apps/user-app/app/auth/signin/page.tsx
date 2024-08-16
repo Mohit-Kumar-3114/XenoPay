@@ -18,8 +18,8 @@ const SignIn = () => {
       callbackUrl: "/account-details", 
     });
   }
-catch(e:any){
-  alert(e)
+catch(e){
+  alert("Credentials are wrong!!")
 }
    
   };
