@@ -57,7 +57,7 @@ const SignIn = () => {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-2  bg-slate-100 mt-2 text-sm border rounded-lg"
+              className="w-full px-4 py-2  bg-slate-100 mt-2 text-md border rounded-lg"
               placeholder="Your Password"
               required
             />
