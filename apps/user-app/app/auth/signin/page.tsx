@@ -30,7 +30,7 @@ const SignIn = () => {
 
   return (
     <div className="flex justify-center items-center h-screen ">
-      <div className="w-full max-w-md  h-4/6 p-6 bg-slate-100 rounded-lg shadow-2xl">
+      <div className="w-full max-w-md  h-3/6 p-6 bg-slate-100 rounded-lg shadow-2xl">
         <h2 className="text-2xl font-semibold text-center text-gray-700">Sign In or Sign Up</h2>
         <form onSubmit={handleSubmit} className="mt-4">
           <div>
