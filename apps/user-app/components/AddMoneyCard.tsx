@@ -65,7 +65,7 @@ export const AddMoney = () => {
                         value: x.name
                     }))}
                 />
-                <div className="flex justify-center pt-9">
+                <div className="flex justify-center pt-6">
                     <Button onClick={handleAddMoney}>
                         Add Money
                     </Button>

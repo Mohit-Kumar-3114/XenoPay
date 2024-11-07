@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Card2 } from "@repo/ui/card2";
+import "../app/style.css"
 
 export const SentTransactions = ({
     transactions
@@ -59,7 +60,7 @@ export const SentTransactions = ({
                     <div className="flex justify-center mt-4">
                         <button
                             onClick={handleToggleView}
-                            className="px-4 py-2 text-sm font-medium text-white bg-gray-950 rounded-lg hover:bg-gray-700"
+                            className="animate-fadeIn px-4 py-2 text-sm font-medium text-white bg-gray-950 rounded-lg hover:bg-gray-700"
                         >
                             {showAll ? "View Less" : "View More"}
                         </button>

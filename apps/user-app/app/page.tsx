@@ -3,7 +3,7 @@ import { redirect } from 'next/navigation';
 import { authOptions } from "./lib/auth";
 import Link from 'next/link';
 import Image from "next/image";
-
+import './globals.css';
 
 export default async function Page() {
   const session = await getServerSession(authOptions);
@@ -11,59 +11,71 @@ export default async function Page() {
   if (session?.user) {
     redirect('/account-details');
   }
-
+  const text = "Welcome!";
   return (
     <div className="flex flex-col min-h-screen">
-      <header className="flex felx-col bg-slate-100 justify-between border-b-2 px-4 border-gray-300">
-        <div className="flex items-center mx-3 my-2 text-4xl font-bold">
-          <img
-            width="50"
-            height="50"
-            src="https://img.icons8.com/ios-filled/50/wallet.png"
-            alt="wallet"
-            className="mr-2"
-          />
-          XenoPay
-        </div>
-        <div className=" flex justify-between space-x-2 mr-2 font-bold text-xl">
-          <span className="my-auto"> Your Financial Partner</span><span className="my-auto">  <img width="48" height="48" src="https://img.icons8.com/doodle/48/handshake--v1.png" alt="handshake--v1"/></span>
-          </div>
-      </header>
-      
-      <main className="flex flex-col md:flex-row items-center justify-between  flex-grow p-4">
-  <div className="flex flex-col  md:w-1/2 mb-2 md:mb-0">
-    <h1 className="text-6xl font-bold mb-6 ml-2">Welcome!</h1>
-    <h2 className="text-4xl font-bold mb-6 ml-2"> All Your Payments, One Tap Away.</h2>
-    <p className="text-lg mb-4 ml-2">Unlock your wallet with a quick sign-in</p>
-    <Link href="/api/auth/signin" className="w-24">
-      <button className="px-4 py-2  text-white ml-2 bg-gray-950 rounded-lg hover:bg-gray-700">
-        Sign In
-      </button>
-    </Link>
+     <header className="flex flex-col md:flex-row bg-slate-100 justify-center md:justify-between border-b-2 px-4 py-2 border-gray-300">
+  <div className=" flex items-center justify-center md:justify-start mx-3 my-2 text-3xl md:text-4xl font-bold">
+    <img
+      width="40"
+      height="40"
+      src="https://img.icons8.com/ios-filled/50/wallet.png"
+      alt="wallet icon"
+      className="mr-2"
+    />
+    XenoPay
   </div>
-  
-  <div className="flex items-center justify-center md:w-1/2">
-    <Image
-      src="/paytm-bg.webp" 
-      alt="Example"
-      width={465}
-      height={465}
+  <div className="flex justify-center md:justify-between space-x-2 mt-2 md:mt-0 font-semibold text-lg md:text-xl">
+    <span className="font-serif my-auto hidden md:inline">Your Financial Partner</span>
+    <img
+      className="hidden md:inline animate-fadeIn"
+      width="30"
+      height="30"
+      src="https://img.icons8.com/doodle/48/handshake--v1.png"
+      alt="handshake icon"
     />
   </div>
-</main>
+</header>
 
+      
+      <main className="flex flex-col md:flex-row items-center justify-between flex-grow p-4">
+        <div className="flex flex-col md:w-1/2 mb-4 md:mb-0">
+        <h1 className="text-5xl md:text-7xl font-bold mb-4 ml-2">
+            {text.split("").map((char, index) => (
+              <span key={index} className="letter">{char}</span>
+            ))}
+          </h1>
+          <h2 className="text-2xl md:text-4xl font-bold mb-4 md:mb-6 ml-2">All Your Payments, One Tap Away.</h2>
+          <p className="font-serif text-base md:text-lg mb-4 ml-2">Unlock your wallet with a quick sign-in</p>
+          <Link href="/api/auth/signin">
+            <button className="animate-fadeIn px-4 py-2 text-white ml-2 bg-gray-950 rounded-lg hover:bg-gray-700 ">
+              Sign In
+            </button>
+          </Link>
+        </div>
+        
+        <div className="flex items-center mr-4 justify-center md:w-1/2 animate-fadeIn">
+          <Image
+            src="/paytm-bg.webp" 
+            alt="Illustration representing payment services"
+            width={370}
+            height={370}
+            className="max-w-full h-auto"
+          />
+        </div>
+      </main>
 
-      <footer className=" text-center p-4 ">
-        <div className="mx-auto flex items-center justify-between">
+      <footer className="text-center p-4 border-t-2 border-gray-300">
+        <div className="mx-auto flex flex-col md:flex-row items-center justify-between space-y-2 md:space-y-0">
           <div>
             <p>&copy; {new Date().getFullYear()} XenoPay</p>
-            <p>All rights reserved.</p>
+            <p className="font-serif">All rights reserved.</p>
           </div>
           <div>
-            <p>Made by- Mohit Kumar</p>
+            <p className="font-serif">Made by Mohit Kumar</p>
           </div>
-          <div className="flex justify-between space-x-6">
-            <a href="https://github.com/Mohit-Kumar-3114">
+          <div className="flex justify-center md:justify-between space-x-6">
+          <a href="https://github.com/Mohit-Kumar-3114">
               <svg
                 height="32"
                 viewBox="0 0 72 72"
@@ -111,4 +123,5 @@ export default async function Page() {
     </div>
   );
 }
+
 

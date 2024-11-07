@@ -2,10 +2,12 @@
 
 import { signIn } from "next-auth/react";
 import { useState } from "react"
+import "../../style.css"
 
 
 
 const SignIn = () => {
+  const text="SignIn or SignUp"
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -23,7 +25,10 @@ const SignIn = () => {
 
     if (result?.error) {
       setError("Invalid phone number or password.");
-    } else {
+      setTimeout(() => {
+        setError(null);
+      }, 3000);
+    }else {
       setError(null); 
       window.location.href = "/account-details"; 
     }
@@ -32,8 +37,12 @@ const SignIn = () => {
 
   return (
     <div className="flex justify-center items-center h-screen ">
-      <div className="w-full max-w-md  p-6 bg-slate-100 rounded-lg shadow-2xl">
-        <h2 className="text-2xl font-semibold text-center text-gray-700">Sign In or Sign Up</h2>
+      <div className="w-full  max-w-xs sm:max-w-sm md:max-w-md  p-6 bg-slate-100 rounded-lg shadow-2xl">
+        <h2 className="text-2xl font-semibold text-center text-gray-700 border-b-2 pb-2">   {text.split(" ").map((word, index) => (
+    <span key={index} className="letter">
+      {word}
+      {index < text.split(" ").length - 1 && <>&nbsp;</>} {/* Adds space */}
+    </span>))}</h2>
         <form onSubmit={handleSubmit} className="mt-4">
           <div>
             <label className="block text-lg font-medium text-gray-950">
@@ -70,7 +79,7 @@ const SignIn = () => {
           <div className="flex justify-center  mt-8">
             <button
               type="submit"
-              className=" px-4 py-2 text-sm font-medium text-white bg-gray-950 rounded-lg hover:bg-gray-700"
+              className=" animate-fadeIn px-4 py-2 text-sm font-medium text-white bg-gray-950 rounded-lg hover:bg-gray-700"
             >
               Continue
             </button>

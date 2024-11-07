@@ -1,29 +1,58 @@
+"use client"
+
 import { AppbarClient } from "../../components/AppbarClient";
 import { SidebarItem } from "../../components/SidebarItem";
+import { useState } from "react";
 
-export default function Layout({
-  children,
-}: {
-  children: React.ReactNode;
-}): JSX.Element {
+
+export default function Layout({ children }: { children: React.ReactNode }): JSX.Element {
+  const [showMobileSidebar, setShowMobileSidebar] = useState(false);
+
   return (
-  <div>
-    <AppbarClient/>
-    <div className="flex">
-        <div className="w-72 border-r border-slate-300 min-h-screen mr-4 pt-28">
-            <div>
-                <SidebarItem href={"/account-details"} icon={<BalanceIcon />} title=" Account-Info" />
-                <SidebarItem href={"/transfer"} icon={<TransferIcon />} title="Transfer" />
-                <SidebarItem href={"/transactions"} icon={<TransactionsIcon />} title="Transactions" />
-                <SidebarItem href={"/p2p"} icon={<P2PTransferIcon />} title="P2P Transfer" />
-                
-            </div>
+    <div>
+      {/* Top App Bar */}
+      <AppbarClient />
+
+      {/* Bottom Menu Icon for Mobile, directly below AppbarClient */}
+      <div className="md:hidden bg-white border-b border-slate-300">
+        <button
+          onClick={() => setShowMobileSidebar(!showMobileSidebar)}
+          className="w-full text-center py-2"
+        >
+        <img width="50" height="50" src="https://img.icons8.com/ios-filled/50/menu--v6.png" alt="menu--v6"/>
+        </button>
+
+        {showMobileSidebar && (
+          <div className=" py-2 bg-white shadow-lg">
+            <SidebarItem href={"/account-details"} icon={<BalanceIcon />} title="Account" />
+            <SidebarItem href={"/transfer"} icon={<TransferIcon />} title="Transfer" />
+            <SidebarItem href={"/transactions"} icon={<TransactionsIcon />} title="Transactions" />
+            <SidebarItem href={"/p2p"} icon={<P2PTransferIcon />} title="P2P" />
+          </div>
+        )}
+      </div>
+
+      {/* Main Layout */}
+      <div className="flex">
+        {/* Sidebar for Desktop Screens */}
+        <div className="hidden md:flex w-72 border-r border-slate-300 min-h-screen mr-4 pt-28">
+          <div>
+            <SidebarItem href={"/account-details"} icon={<BalanceIcon />} title=" Account-Info" />
+            <SidebarItem href={"/transfer"} icon={<TransferIcon />} title="Transfer" />
+            <SidebarItem href={"/transactions"} icon={<TransactionsIcon />} title="Transactions" />
+            <SidebarItem href={"/p2p"} icon={<P2PTransferIcon />} title="P2P Transfer" />
+          </div>
         </div>
-            {children}
-    </div>
+
+        {/* Content Area */}
+        <div className="flex-1">
+          {children}
+        </div>
+      </div>
     </div>
   );
 }
+
 
 
  function TransferIcon() {

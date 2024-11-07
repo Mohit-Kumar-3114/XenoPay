@@ -68,8 +68,8 @@ export default async function TransactionsPage({ searchParams }: { searchParams:
     }
 
     return (
-        <div className="w-full">
-            <div className="text-4xl text-gray-950 pt-8 mb-8 font-bold">
+        <div className="w-full flex flex-col items-center">
+            <div className="text-4xl text-gray-950 pt-8 mb-8 font-bold letter">
                 Transactions
             </div>
             <div className="flex justify-center mb-4">
@@ -98,7 +98,7 @@ export default async function TransactionsPage({ searchParams }: { searchParams:
                     Received
                 </Link>
             </div>
-            <div className="w-full flex flex-1 justify-center">
+            <div className="w-full flex flex-1 justify-center mb-16">
     {activeTab === 'onRamp' && (
       <div className="w-full pt-4 flex justify-center">
         <OnRampTransactions transactions={transactions} />
